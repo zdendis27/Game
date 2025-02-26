@@ -1,5 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        World w = new World();
+        w.loadMap();
+
+        System.out.println(w.getMap().toString());
+
     }
 }
