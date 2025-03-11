@@ -1,0 +1,82 @@
+@startuml
+start
+
+:Načítání hry;
+:Inicializace systému;
+:Načtení mapy;
+
+:Zobrazení úvodního dialogu;
+
+while (hráč nedosáhl poslední místnosti?) is (ano)
+  :Získání seznamu dostupných místností;
+  :Zkontrolovat reputaci hráče;
+  if (místnost dostupná podle reputace?) then (ano)
+    :Zobrazit dostupné místnosti;
+    :Hráč si vybere místnost;
+    :Vstup do místnosti;
+  else (ne)
+    :Zobrazit chybovou zprávu;
+  endif
+
+  while (hráč v místnosti) is (ano)
+    :Uživatel zadá příkaz;
+    if (příkaz == "pohyb") then (ano)
+      :Zkontrolovat, zda lze jít do místnosti;
+      if (možno vstoupit) then (ano)
+        :Přesun do nové místnosti;
+        break
+      else (ne)
+        :Zobrazit chybovou zprávu;
+      endif
+    endif
+
+    if (příkaz == "sebrat předmět") then (ano)
+      :Zkontrolovat, zda je předmět v místnosti;
+      if (předmět existuje) then (ano)
+        :Přidat předmět do inventáře;
+      else (ne)
+        :Zobrazit chybovou zprávu;
+      endif
+    endif
+
+    if (příkaz == "konverzace") then (ano)
+      :Zahájit rozhovor s NPC;
+      while (interakce aktivní) is (ano)
+        :Uživatel zadá příkaz;
+        if (příkaz == "boj") then (ano)
+          while (protivník není poražen?) is (ano)
+            :Spustit bojový režim;
+            :Zkontrolovat, zda byl protivník poražen;
+          endwhile
+        endif
+
+        if (příkaz == "řešit hádanku") then (ano)
+          while (řešení není správné?) is (ano)
+            :Ověřit správnost řešení;
+            if (správné?) then (ano)
+              :Odměna hráči;
+            else (ne)
+              :Zobrazit nápovědu nebo chybovou zprávu;
+            endif
+          endwhile
+        endif
+
+        if (příkaz == "dát předmět") then (ano)
+          :Předmět předán NPC;
+        endif
+      endwhile
+    endif
+
+    if (příkaz == "otevřít inventář") then (ano)
+      :Zobrazit obsah inventáře;
+    endif
+
+    if (příkaz je neplatný) then (ano)
+      :Zobrazit chybovou zprávu;
+    endif
+  endwhile
+endwhile
+
+:Gratulace! Vyhral jsi ;
+stop
+@enduml
