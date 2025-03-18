@@ -1,9 +1,14 @@
 package game.commands;
 
+import game.Inventory;
+
 public class OpenInventory extends Command{
     @Override
     public String execute() {
-        return "";
+        Inventory inv = new Inventory();
+        inv.loadInventory();
+
+        return inv.getItem();
     }
 
     @Override

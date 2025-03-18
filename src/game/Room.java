@@ -8,13 +8,16 @@ public class Room {
 
     private int minReputation;
     private ArrayList<Integer> availableRooms = new ArrayList<>();
+    private String item;
 
     @Override
     public String toString() {
-        return "game.Room{" +
+        return "Room{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
+                ", minReputation=" + minReputation +
                 ", availableRooms=" + availableRooms +
+                ", item='" + item + '\'' +
                 '}';
     }
 
@@ -50,10 +53,21 @@ public class Room {
         this.minReputation = minReputation;
     }
 
-    public Room(String name, int id) {
+    public String getItem() {
+        return item;
+    }
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+
+    public Room(String name, int id, int minReputation,String item) {
         this.name = name;
         this.id = id;
+        this.minReputation = minReputation;
+        this.item = item;
     }
+
 
 
 }

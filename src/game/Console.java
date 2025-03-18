@@ -13,6 +13,12 @@ public class Console {
     public void initialization(){
         commands = new HashMap<>();
         commands.put("jdi", new Movement());
+        commands.put("inv", new OpenInventory());
+        commands.put("vem", new PickItem());
+        commands.put("dej", new GiveItem());
+        commands.put("resit", new TryToSolve());
+        commands.put("mluv", new StartConversation());
+        commands.put("bojuj", new Fight());
     }
 
     private void doCommand(){
