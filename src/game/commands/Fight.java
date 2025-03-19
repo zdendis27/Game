@@ -1,5 +1,6 @@
 package game.commands;
 
+import game.User;
 import game.World;
 
 import java.util.Random;
@@ -18,6 +19,8 @@ public class Fight extends Command{
         boolean defended = false;
         World w = new World();
         w.loadMap();
+        w.loadCurrentRoom();
+        User u = new User();
 
         if (w.getcurrentRoom().getId() == 4) {
             System.out.println("Generál Adam tě vyzývá na souboj!");
@@ -52,12 +55,15 @@ public class Fight extends Command{
 
             if (carlHP > 0) {
                 System.out.println("\nVyhrál jsi souboj!");
+                u.updateReputation();
             } else {
                 System.out.println("\nProhrál jsi...");
             }
 
 
 
+        }else{
+            System.out.println("V teto mistnosti nelze bojovat");
         }
         return "hotovo";
     }

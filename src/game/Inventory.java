@@ -36,4 +36,12 @@ public class Inventory {
         }
         return true;
     }
+    public void removeItemFromFile(String filePath) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            bw.write("null"); // Přepíše obsah souboru na "null"
+        } catch (IOException e) {
+            System.out.println("Chyba při přepisování souboru inventáře.");
+        }
+    }
+
 }

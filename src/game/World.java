@@ -103,36 +103,6 @@ private ArrayList<Person> persons = new ArrayList<>();
         return true;
 }
 
-    public void removeItem(int lineNumber) {
-
-        try (BufferedReader br = new BufferedReader(new FileReader("src/game/mapa"));
-             BufferedWriter bw = new BufferedWriter(new FileWriter("src/game/mapa"))) {
-
-            String line;
-            int currentLine = 1;
-
-            while ((line = br.readLine()) != null) {
-                if (currentLine == lineNumber) {
-                    String[] parts = line.split("/");
-                    if (parts.length > 1) {
-                        StringBuilder newLine = new StringBuilder();
-                        for (int i = 0; i < parts.length - 1; i++) {
-                            newLine.append(parts[i]).append("/");
-                        }
-                        line = newLine.substring(0, newLine.length() - 1);
-                    }
-                }
-                bw.write(line);
-                bw.newLine();
-                currentLine++;
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public boolean loadCurrentRoom() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/currentLoc"))) {
             String line = br.readLine();

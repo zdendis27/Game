@@ -14,6 +14,7 @@ public class Movement extends Command {
     @Override
     public String execute() {
         w.loadMap();
+        w.loadCurrentRoom();
         u.loadUser();
 
         System.out.println("Nachazis se v mistnosti:");
@@ -42,29 +43,18 @@ public class Movement extends Command {
             }
 
             if (loc == 99) {
-                System.out.println("Ukonceni hry. Aktualni mistnost: " + w.getcurrentRoom().getName());
+                System.out.println("Ukonceni pohybu. Aktualni mistnost: " + w.getcurrentRoom().getName());
                 w.writeCurrentRoom();
 
                 break;
             }
 
-            if (w.getcurrentRoom() == null) {
-                System.out.println("Chyba: currentRoom je null před přesunem!");
-                continue;
-            }
 
-            if (loc == w.getcurrentRoom().getId()) {
-                System.out.println("V teto mistnosti se prave nachazis");
-                continue;
-            }
 
             if (w.getMap().containsKey(loc) && w.getcurrentRoom().getAvailableRooms().contains(loc) && w.getMap().get(loc).getMinReputation() <= u.getReputation()) {
                 w.setcurrentRoom(w.getMap().get(loc));
 
-                if (w.getcurrentRoom() == null) {
-                    System.out.println("Chyba: currentRoom se nepodařilo nastavit!");
-                    continue;
-                }
+
 
                 System.out.println("Presunul jsi se do mistnosti: " + w.getcurrentRoom().toString());
                 System.out.println("Dostupne mistnosti: " + w.getcurrentRoom().getAvailableRooms());

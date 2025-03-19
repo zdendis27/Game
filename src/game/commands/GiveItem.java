@@ -18,9 +18,9 @@ public class GiveItem extends Command{
         User u = new User();
         inv.loadInventory();
         w.loadMap();
+        w.loadCurrentRoom();
         w.loadPersons();
 
-        // Ověření, zda osoba existuje a má požadovaný předmět
         Person currentPerson = w.getPersons().get(w.getcurrentRoom().getId());
         if (currentPerson == null || currentPerson.getWantedItem() == null || currentPerson.getWantedItem().trim().isEmpty()) {
             System.out.println("Žádná osoba v této místnosti nepožaduje předmět.");
@@ -32,7 +32,7 @@ public class GiveItem extends Command{
         System.out.println("Chcete tento váš předmět odevzdat? (ano/ne)");
 
         String input = sc.nextLine();
-        if (input.equals("ano") && inv.getItem().trim().equals(currentPerson.getWantedItem().trim())) {
+        if (input.equals("ano") && inv.getItem() != null && inv.getItem().trim().equals(currentPerson.getWantedItem().trim())) {
             ArrayList<String> updatedLines = new ArrayList<>();
 
             try (BufferedReader br = new BufferedReader(new FileReader("src/game/persons"))) {
@@ -57,7 +57,9 @@ public class GiveItem extends Command{
                 e.printStackTrace();
             }
 
+            inv.removeItemFromFile("src/game/inventory");
             u.updateReputation();
+            System.out.println("Předmět byl úspěšně odevzdán a odstraněn z inventáře.");
         } else {
             System.out.println("Přidání se nezdařilo");
         }
