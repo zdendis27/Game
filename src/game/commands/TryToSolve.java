@@ -17,45 +17,62 @@ public class TryToSolve extends Command{
         World w = new World();
         w.loadMap();
         w.loadCurrentRoom();
+        w.loadPersons();
         ExtraDialoguesLoad ex = new ExtraDialoguesLoad();
         User u = new User();
         ex.load();
+
         String filepath = "";
         String answer = "";
-        int prom = 1;
-        String input;
-        for(int i = 0;i<ex.getDialogues().size();i++){
-            if(ex.getDialogues().get(i).getId()==w.getcurrentRoom().getId()){
-                filepath = ex.getDialogues().get(i).getFilePath();
-                answer = ex.getDialogues().get(i).getAnswer();
-            }
-        }
-        if(w.getPersons().get(w.getcurrentRoom().getId()).isWantToSolve()){
-            try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    System.out.println(line); // Výpis každého řádku
+        boolean solved = false;
+        Scanner sc = new Scanner(System.in);
+
+        if(w.getcurrentRoom().getId()!=1) {
+
+            for (int i = 0; i < ex.getDialogues().size(); i++) {
+                if (ex.getDialogues().get(i).getId() == w.getcurrentRoom().getId()) {
+                    filepath = ex.getDialogues().get(i).getFilePath();
+                    answer = ex.getDialogues().get(i).getAnswer();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
 
-        }
-        System.out.println("Zadej odpoved na otazku");
-        input = sc.next();
-        while(prom == 0){
-            if(input.equals(answer)){
-                System.out.println("Spravne");
-                prom = 1;
-                u.updateReputation();
 
-            }else{
-                System.out.println("Zkus to znovu");
+            if (!w.getPersons().get(w.getcurrentRoom().getId()).isWantToSolve()) {
+                System.out.println("V teto mistnosti neni nikdo, kdo by chtel resit hadanku.");
+                return "hotovo";
             }
+
+            if (w.getPersons().get(w.getcurrentRoom().getId()).isWantToSolve()) {
+                try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        System.out.println(line);
+                    }
+                } catch (IOException e) {
+                    System.out.println("Chyba pri nacitani hadanky.");
+                    e.printStackTrace();
+                    return "hotovo";
+                }
+
+                System.out.println("Zadej odpoved na otazku:");
+                while (!solved) {
+                    String input = sc.next();
+                    if (input.equalsIgnoreCase(answer)) {
+                        System.out.println("Spravne");
+                        u.updateReputation();
+                        solved = true;
+                    } else {
+                        System.out.println("Spatna odpoved, zkus to znovu:");
+                    }
+                }
+            } else {
+                System.out.println("Nikdo v teto mistnosti nechce resit hadanku.");
+            }
+        }else{
+            return "Nikdo v teto mistnosti nechce resit hadanku.";
         }
 
-
-        return "";
+        return "hotovo";
     }
 
     @Override

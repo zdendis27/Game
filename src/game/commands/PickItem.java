@@ -22,7 +22,7 @@ public class PickItem extends Command {
         System.out.println("Chces tento predmet presunout do inventare? (ano/ne)");
 
         String input = sc.nextLine();
-        if (input.equals("ano") && inv.getItem()==null) {
+        if (input.equals("ano") && inv.getItem()==null&&item !=null) {
             inv.addItem(item);
             w.getcurrentRoom().setItem(null);
             return "Pridal jsi do inventare " + item;

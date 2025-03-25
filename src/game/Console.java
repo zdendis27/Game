@@ -22,13 +22,24 @@ public class Console {
     }
 
     private void doCommand(){
-        System.out.println(">");
-        String comm = sc.next();
-        if (commands.containsKey(comm)){
-            System.out.println(commands.get(comm).execute());
-            exit = commands.get(comm).exit();
-        }else {
-            System.out.println("Zadal jste spatny vyraz");
+        World w = new World();
+        w.loadMap();
+        w.loadCurrentRoom();
+        Endgame e = new Endgame();
+        if(w.getcurrentRoom().getId()!=8) {
+            System.out.print(">");
+            String comm = sc.next();
+
+            if (commands.containsKey(comm)){
+                System.out.println(commands.get(comm).execute());
+                exit = commands.get(comm).exit();
+            }else {
+                System.out.println("Zadal jste spatny vyraz");
+            }}
+
+        if(w.getcurrentRoom().getId()==8){
+            e.endgame();
+            exit = true;
         }
 
     }

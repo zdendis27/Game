@@ -79,29 +79,42 @@ private ArrayList<Person> persons = new ArrayList<>();
 
 
 
-    public boolean loadPersons(){
-        try(BufferedReader br = new BufferedReader(new FileReader("src/game/persons"))){
+    public boolean loadPersons() {
+        persons.clear();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("src/game/persons"))) {
             String line;
-            while((line = br.readLine())!=null){
-                String[] parts = line.split("/");
-
-                ArrayList<String> partsList = new ArrayList<>(Arrays.asList(parts));
-                while (partsList.size() < 7) {
-                    partsList.add("null");
+            while ((line = br.readLine()) != null) {
+                if (line.trim().isEmpty() || line.matches("\\d+")) {
+                    continue;
                 }
-                parts = partsList.toArray(new String[0]);
-                Person p = new Person(parseInt(parts[0]),parts[1],parts[2],Boolean.parseBoolean(parts[3]), Boolean.parseBoolean(parts[4]), parts[5],parts[6]);
-                persons.add(p);
 
+                String[] parts = line.split(";");
+                while (parts.length < 7) {
+                    parts = Arrays.copyOf(parts, parts.length + 1);
+                    parts[parts.length - 1] = "null";
+                }
 
+                int roomId = Integer.parseInt(parts[0]);
+                Person p = new Person(roomId, parts[1], parts[2], Boolean.parseBoolean(parts[3]), Boolean.parseBoolean(parts[4]), parts[5], parts[6]);
+
+                while (persons.size() <= roomId) {
+                    persons.add(null);
+                }
+
+                persons.set(roomId, p);
             }
+
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Soubor persons nebyl nalezen.", e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Chyba při čtení souboru persons.", e);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Chyba při převodu čísla v persons.", e);
         }
         return true;
-}
+    }
+
 
     public boolean loadCurrentRoom() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/currentLoc"))) {

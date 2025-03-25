@@ -35,4 +35,13 @@ public class ExtraDialogue {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+    @Override
+    public String toString() {
+        return "ExtraDialogue{" +
+                "id=" + id +
+                ", filePath='" + filePath + '\'' +
+                ", answer='" + answer + '\'' +
+                '}';
+    }
 }

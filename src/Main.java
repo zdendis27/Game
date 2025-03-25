@@ -1,9 +1,10 @@
 import game.Console;
+import game.Run;
 
 public class Main {
     public static void main(String[] args) {
-        Console c = new Console();
-        c.start();
+        Run r = new Run();
+        r.run();
 
 
     }
