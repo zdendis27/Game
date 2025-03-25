@@ -1,32 +1,44 @@
 package game.commands;
 
+import game.Person;
 import game.World;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
-public class StartConversation extends Command{
+public class StartConversation extends Command {
     @Override
     public String execute() {
 
         World w = new World();
         w.loadMap();
         w.loadCurrentRoom();
-        String text;
+        w.loadPersons();
+        if(w.getcurrentRoom().getId()!=1) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(w.getPersons().get(w.getcurrentRoom().getId()).getDialoguePath())))  {
-            while ((text = br.readLine()) != null) {
-                text += br.readLine();
+            Person currentPerson = w.getPersons().get(w.getcurrentRoom().getId());
+
+
+            File dialogueFile = new File(currentPerson.getDialoguePath());
+
+
+            StringBuilder dialogue = new StringBuilder();
+
+            try (BufferedReader br = new BufferedReader(new FileReader(dialogueFile))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    dialogue.append(line).append("\n");
+                }
+            } catch (IOException e) {
+                return "Chyba při čtení souboru: " + e.getMessage();
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+            return dialogue.toString().trim();
+        }else{
+            return "V teto mistnosti si nelze s nikym popovidat";
         }
-        return text;
+
     }
+
 
     @Override
     public boolean exit() {

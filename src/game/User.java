@@ -5,16 +5,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User {
-    private String name;
+
     private int reputation;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getReputation() {
         return reputation;
@@ -28,9 +22,7 @@ public class User {
         try(BufferedReader br = new BufferedReader(new FileReader("src/game/user"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                name = data[0];
-                reputation = Integer.parseInt(data[1]);
+                reputation = Integer.parseInt(line);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -54,7 +46,7 @@ public class User {
                     String name = parts[0].trim();
                     int reputation = Integer.parseInt(parts[1].trim());
                     reputation += 2; //
-                    updatedLines.add(name + ", " + reputation); // Nový řádek
+                    updatedLines.add(name + "," + reputation); // Nový řádek
                 } else {
                     updatedLines.add(line);
                 }

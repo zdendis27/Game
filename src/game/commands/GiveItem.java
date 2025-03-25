@@ -32,20 +32,23 @@ public class GiveItem extends Command{
         System.out.println("Chcete tento váš předmět odevzdat? (ano/ne)");
 
         String input = sc.nextLine();
-        if (input.equals("ano") && inv.getItem() != null && inv.getItem().trim().equals(currentPerson.getWantedItem().trim())) {
+        if (input.equals("ano") && inv.getItem() != null && inv.getItem().trim().equalsIgnoreCase(currentPerson.getWantedItem().trim())) {
             ArrayList<String> updatedLines = new ArrayList<>();
+
 
             try (BufferedReader br = new BufferedReader(new FileReader("src/game/persons"))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] parts = line.split("/");
-                    if (parts.length >= 6 && parts[2].trim().equals(currentPerson.getWantedItem().trim())) {
+                    if (parts.length >= 6 && parts[2].trim().equalsIgnoreCase(currentPerson.getWantedItem().trim())) {
                         parts[2] = "null";
                     }
                     updatedLines.add(String.join("/", parts));
                 }
             } catch (IOException e) {
+                System.out.println("Chyba při čtení souboru.");
                 e.printStackTrace();
+                return "hotovo";
             }
 
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/game/persons"))) {
@@ -54,14 +57,20 @@ public class GiveItem extends Command{
                     bw.newLine();
                 }
             } catch (IOException e) {
+                System.out.println("Chyba při zápisu do souboru.");
                 e.printStackTrace();
+                return "hotovo";
             }
 
-            inv.removeItemFromFile("src/game/inventory");
-            u.updateReputation();
+
+
+
+
+
             System.out.println("Předmět byl úspěšně odevzdán a odstraněn z inventáře.");
+            System.out.println("Reputace se ti zvýšila o 2...");
         } else {
-            System.out.println("Přidání se nezdařilo");
+            System.out.println("Přidání se nezdařilo.");
         }
 
         return "hotovo";
