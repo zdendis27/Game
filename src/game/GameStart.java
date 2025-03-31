@@ -29,7 +29,6 @@ public class GameStart {
         try {
             for(int i = 0; i < sources.size(); i++){
                 Files.copy(sources.get(i), targets.get(i), StandardCopyOption.REPLACE_EXISTING);
-
             }
 
         } catch (Exception e) {

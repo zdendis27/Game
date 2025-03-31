@@ -19,6 +19,7 @@ public class Console {
         commands.put("resit", new TryToSolve());
         commands.put("mluv", new StartConversation());
         commands.put("bojuj", new Fight());
+        commands.put("exit", new Exit());
     }
 
     private void doCommand(){
