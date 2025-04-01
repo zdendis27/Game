@@ -5,10 +5,11 @@ import game.Room;
 import game.World;
 
 import java.util.Scanner;
-
+//Tato trida resi prikaz k sebrani predmetu.
 public class PickItem extends Command {
     Scanner sc = new Scanner(System.in);
 
+    //Metoda, diky ktere muze uzivatel sebrat predmet a pridat si ho do inventare.
     @Override
     public String execute() {
         World w = new World();

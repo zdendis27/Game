@@ -9,9 +9,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-
+//V teto tride je resen prikaz na vyreseni hadanky
 public class TryToSolve extends Command{
     Scanner sc = new Scanner(System.in);
+
+    //Tato metoda spusti dialog, ktery je potreba pro uhodnuti hadanky
+    // a necha uzivatele hadat odpoved.
     @Override
     public String execute() {
         World w = new World();

@@ -8,9 +8,12 @@ import game.World;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+// Trida prikazu pro predani predmetu.
 public class GiveItem extends Command{
     Scanner sc = new Scanner(System.in);
+
+    //Metoda, pomoci ktere muze uzivatel odevzdat osobou pozadovany predmet,
+    // pokud se mu nachazi v inventari.
     @Override
     public String execute() {
         World w = new World();
@@ -72,6 +75,7 @@ public class GiveItem extends Command{
         } else {
             System.out.println("Přidání se nezdařilo.");
         }
+        sc.close();
 
         return "hotovo";
     }

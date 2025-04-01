@@ -5,11 +5,12 @@ import game.World;
 
 import java.util.Random;
 import java.util.Scanner;
-
+//Trida obsahujici mechaniku souboje.
 public class Fight extends Command{
     Random rd = new Random();
     Scanner sc = new Scanner(System.in);
 
+    //Metoda ktera resi mechaniku souboje a muze diky ni uzivatel v urcite mistnosti spustit souboj.
     @Override
     public String execute() {
 
