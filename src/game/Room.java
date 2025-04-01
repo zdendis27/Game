@@ -1,7 +1,7 @@
 package game;
 
 import java.util.ArrayList;
-
+//Tato trida slouzi k inicializaci mistnosti.
 public class Room {
     private String name;
     private int id;

@@ -2,7 +2,7 @@ package game;
 
 import java.io.File;
 import java.util.ArrayList;
-
+//Tato trida slouzi k inicializaci osoby.
 public class Person {
     private int id;
     private String name;

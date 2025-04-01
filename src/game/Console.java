@@ -4,12 +4,13 @@ import game.commands.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
-
+//Tato trida slouzi k fungovani prikazu.
 public class Console {
     private Scanner sc = new Scanner(System.in);
     private boolean exit = false;
     private HashMap<String, Command> commands;
 
+    //Tato metoda inicializuje jednotlive prikazy.
     public void initialization(){
         commands = new HashMap<>();
         commands.put("jdi", new Movement());
@@ -22,6 +23,7 @@ public class Console {
         commands.put("exit", new Exit());
     }
 
+    //Tato metoda se stara o spravne spustenia ukonceni commandu.
     private void doCommand(){
         World w = new World();
         w.loadMap();
@@ -45,6 +47,7 @@ public class Console {
 
     }
 
+    //Tato metoda spousti prikazovou cast hry.
     public void start(){
         initialization();
         do {

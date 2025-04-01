@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
-
+//Tato trida slouzi k sprave herniho prostredi.
 public class World {
 
 private HashMap<Integer, Room> map = new HashMap<>();
@@ -39,6 +39,8 @@ private ArrayList<Person> persons = new ArrayList<>();
         this.persons = persons;
     }
 
+    //Tato metoda nacte mapu hry.
+    //Tato metoda byla prepracovana za pomoci Chat GPT
     public boolean loadMap() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/mapa"))) {
             String line;
@@ -79,6 +81,7 @@ private ArrayList<Person> persons = new ArrayList<>();
 
 
 
+    //Tato metoda nacte postavy ze hry.
     public boolean loadPersons() {
         persons.clear();
 
@@ -116,6 +119,7 @@ private ArrayList<Person> persons = new ArrayList<>();
     }
 
 
+    //Tato metoda nacte aktualni lokaci.
     public boolean loadCurrentRoom() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/currentLoc"))) {
             String line = br.readLine();
@@ -147,6 +151,7 @@ private ArrayList<Person> persons = new ArrayList<>();
 
 
 
+   //Tato metoda prepise aktualni lokaci.
     public boolean writeCurrentRoom() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/game/currentLoc"))) {
             bw.write(String.valueOf(currentRoom.getId()));

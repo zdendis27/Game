@@ -1,5 +1,5 @@
 package game;
-
+//Tato trida reprezentuje specialni dialogy pouzite pri hadankach.
 public class ExtraDialogue {
 
     private int id;

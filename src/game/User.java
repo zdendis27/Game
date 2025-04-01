@@ -3,7 +3,7 @@ package game;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+//Tato trida slouzi k sprave uzivatele
 public class User {
 
     private int reputation;
@@ -18,6 +18,7 @@ public class User {
         this.reputation = reputation;
     }
 
+    //Tato metoda nacte reputaci uzivatele
     public boolean loadUser(){
         try(BufferedReader br = new BufferedReader(new FileReader("src/game/user"))) {
             String line;
@@ -34,6 +35,7 @@ public class User {
         return true;
     }
 
+    //Tato metoda aktualizuje reputaci uzivatele.
     public boolean updateReputation() {
         ArrayList<String> updatedLines = new ArrayList<>();
 
@@ -45,8 +47,8 @@ public class User {
                 if (parts.length == 2) {
                     String name = parts[0].trim();
                     int reputation = Integer.parseInt(parts[1].trim());
-                    reputation += 2; //
-                    updatedLines.add(name + "," + reputation); // Nový řádek
+                    reputation += 2;
+                    updatedLines.add(name + "," + reputation);
                 } else {
                     updatedLines.add(line);
                 }

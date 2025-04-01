@@ -9,9 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+//Tato trida testuje metody ze tridy Help
 class HelpTest {
 
+    //Tato metoda slouzi k testovani souboru, ktery ma byt vypsan.
     @Test
     void testExecute() throws IOException {
         // Vytvoření testovacího souboru
