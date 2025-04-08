@@ -4,10 +4,17 @@ import game.Person;
 import game.World;
 
 import java.io.*;
-//V teto tride se resi spusteni dialogu.
+
+/**
+ * V teto tride se resi spusteni dialogu.
+ */
+
 public class StartConversation extends Command {
 
-    //Tato metoda spusti priklad, ktery vypise dialog dostupny v dane mistnosti.
+    /**
+     * Tato metoda spusti priklad, ktery vypise dialog dostupny v dane mistnosti.
+     */
+
     @Override
     public String execute() {
 

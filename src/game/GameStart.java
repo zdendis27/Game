@@ -8,14 +8,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-//Tato trida se stara o zacatek programu.
+
+/**
+ * Tato trida se stara o zacatek programu.
+ */
 public class GameStart {
 
     private ArrayList<Path> sources = new ArrayList<>();
     private ArrayList<Path> targets = new ArrayList<>();
 
 
-    //Tato metoda nacte zakladni soubory.
+    /**
+     * Tato metoda nacte zakladni soubory.
+     */
+
     public boolean setStartingFiles(){
         sources.add(Path.of("src/game/startingFiles/currentLocStart"));
         sources.add(Path.of("src/game/startingFiles/inventoryStart"));
@@ -39,7 +45,10 @@ public class GameStart {
         return false;
     }
 
-    //Tato metoda spusti prolog.
+    /**
+     * Tato metoda spusti prolog.
+     */
+
     public boolean prologue(){
 
         try(BufferedReader br = new BufferedReader(new FileReader("src/game/dialogues/prologue"))) {

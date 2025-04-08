@@ -1,7 +1,11 @@
 package game;
 
 import java.util.ArrayList;
-//Tato trida slouzi k inicializaci mistnosti.
+
+/**
+ * Tato trida slouzi k inicializaci mistnosti.
+ */
+
 public class Room {
     private String name;
     private int id;
@@ -12,14 +16,12 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", minReputation=" + minReputation +
-                ", availableRooms=" + availableRooms +
-                ", item='" + item + '\'' +
-                '}';
+        return "Nachazite se v " + name +
+                " (ID: " + id + ", Min. reputace: " + minReputation + ")" +
+                "\nDostupne mistnosti: " + availableRooms +
+                "\nPredmet: " + (item == null ? "Zadny" : item);
     }
+
 
     public ArrayList<Integer> getAvailableRooms() {
         return availableRooms;

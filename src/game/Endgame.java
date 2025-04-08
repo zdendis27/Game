@@ -4,10 +4,17 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-//Tato trida se stara o konec hry.
+
+/**
+ * Tato trida se stara o konec hry.
+ */
+
 public class Endgame {
 
-    //Tato metoda se stara o vypsani finalniho dialogu.
+    /**
+     * Tato metoda se stara o vypsani finalniho dialogu.
+     */
+
     public String endgame() {
         World w = new World();
         w.loadMap();

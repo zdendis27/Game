@@ -4,9 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-//Trida resici prikaz na pomoc uzivateli.
+
+/**
+ * Trida resici prikaz na pomoc uzivateli.
+ */
+
 public class Help extends Command{
-    //Metoda, ktera uzivateli vypise legendu prikazu.
+    /**
+     * Metoda, ktera uzivateli vypise legendu prikazu.
+     */
+
     @Override
     public String execute() {
 

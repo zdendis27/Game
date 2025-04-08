@@ -4,14 +4,21 @@ import game.User;
 import game.World;
 
 import java.util.Scanner;
-//V teto tride je resen pohyb po mape.
+
+/**
+ * V teto tride je resen pohyb po mape.
+ */
+
 public class Movement extends Command {
     World w = new World();
     Scanner sc = new Scanner(System.in);
     User u = new User();
 
 
-    //Pomoci teto metody se uzivatel muze pohzbovat do mistnosti, na ktere ma reputaci.
+    /**
+     * Pomoci teto metody se uzivatel muze pohybovat do mistnosti, na ktere ma reputaci.
+     */
+
     @Override
     public String execute() {
         w.loadMap();

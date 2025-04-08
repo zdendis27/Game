@@ -5,7 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-//Tato trida nacita specialni dialogy.
+
+/**
+ * Tato trida nacita specialni dialogy.
+ */
+
 public class ExtraDialoguesLoad {
     private ArrayList<ExtraDialogue> dialogues = new ArrayList<>();
 
@@ -17,7 +21,10 @@ public class ExtraDialoguesLoad {
         this.dialogues = dialogues;
     }
 
-    //Tato metoda nacte postupne vsechny specialni dialogy.
+    /**
+     * Tato metoda nacte postupne vsechny specialni dialogy.
+     */
+
     public boolean load() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/extradialogues"))){
             String line;

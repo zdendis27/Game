@@ -8,12 +8,18 @@ import game.World;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-// Trida prikazu pro predani predmetu.
+
+/**
+ *Trida prikazu pro predani predmetu.
+ */
 public class GiveItem extends Command{
     Scanner sc = new Scanner(System.in);
 
-    //Metoda, pomoci ktere muze uzivatel odevzdat osobou pozadovany predmet,
-    // pokud se mu nachazi v inventari.
+    /**
+     * Metoda, pomoci ktere muze uzivatel odevzdat osobou pozadovany predmet,
+     * pokud se mu nachazi v inventari.
+     */
+
     @Override
     public String execute() {
         World w = new World();
@@ -23,18 +29,19 @@ public class GiveItem extends Command{
         w.loadMap();
         w.loadCurrentRoom();
         w.loadPersons();
+        u.loadUser();
 
         Person currentPerson = w.getPersons().get(w.getcurrentRoom().getId());
         if (currentPerson == null || currentPerson.getWantedItem() == null || currentPerson.getWantedItem().trim().isEmpty()) {
             System.out.println("Žádná osoba v této místnosti nepožaduje předmět.");
-            return "hotovo";
+            return "";
         }
 
         System.out.println("Osoba v této místnosti žádá tento předmět: " + currentPerson.getWantedItem());
         System.out.println("Ve vašem inventáři se nachází tento předmět: " + inv.getItem());
         System.out.println("Chcete tento váš předmět odevzdat? (ano/ne)");
 
-        String input = sc.nextLine();
+        String input = sc.next();
         if (input.equals("ano") && inv.getItem() != null && inv.getItem().trim().equalsIgnoreCase(currentPerson.getWantedItem().trim())) {
             ArrayList<String> updatedLines = new ArrayList<>();
 
@@ -72,10 +79,11 @@ public class GiveItem extends Command{
 
             System.out.println("Předmět byl úspěšně odevzdán a odstraněn z inventáře.");
             System.out.println("Reputace se ti zvýšila o 2...");
+            u.updateReputation();
         } else {
             System.out.println("Přidání se nezdařilo.");
         }
-        sc.close();
+
 
         return "hotovo";
     }

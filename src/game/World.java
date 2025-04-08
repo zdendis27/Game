@@ -1,13 +1,20 @@
 package game;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
-//Tato trida slouzi k sprave herniho prostredi.
+
+/**
+ * Tato trida slouzi k sprave herniho prostredi.
+ */
 public class World {
 
 private HashMap<Integer, Room> map = new HashMap<>();
@@ -39,8 +46,11 @@ private ArrayList<Person> persons = new ArrayList<>();
         this.persons = persons;
     }
 
-    //Tato metoda nacte mapu hry.
-    //Tato metoda byla prepracovana za pomoci Chat GPT
+    /**
+     * Tato metoda nacte mapu hry.
+     * @author Tato metoda byla prepracovana za pomoci Chat GPT
+     */
+
     public boolean loadMap() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/mapa"))) {
             String line;
@@ -79,9 +89,10 @@ private ArrayList<Person> persons = new ArrayList<>();
     }
 
 
+    /**
+     * Tato metoda nacte postavy ze hry.
+     */
 
-
-    //Tato metoda nacte postavy ze hry.
     public boolean loadPersons() {
         persons.clear();
 
@@ -119,7 +130,10 @@ private ArrayList<Person> persons = new ArrayList<>();
     }
 
 
-    //Tato metoda nacte aktualni lokaci.
+    /**
+     * Tato metoda nacte aktualni lokaci.
+     */
+
     public boolean loadCurrentRoom() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/currentLoc"))) {
             String line = br.readLine();
@@ -150,8 +164,10 @@ private ArrayList<Person> persons = new ArrayList<>();
     }
 
 
+    /**
+     * Tato metoda prepise aktualni lokaci.
+     */
 
-   //Tato metoda prepise aktualni lokaci.
     public boolean writeCurrentRoom() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/game/currentLoc"))) {
             bw.write(String.valueOf(currentRoom.getId()));
@@ -160,6 +176,39 @@ private ArrayList<Person> persons = new ArrayList<>();
         }
         return true;
     }
+
+    /**
+     * Tato metoda slozi k odstraneni itemu po sebrani
+     * @author Tato metoda byla vytvorena za pomoci ChatGPT
+     */
+
+    public void removeItem() {
+        try {
+            Path path = Paths.get("src/game/mapa");
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(path));
+
+            List<String> noveRadky = new ArrayList<>();
+            for (String line : lines) {
+                if (line.contains("varecka")) {
+                    line = line.replace("varecka", "Zadny");
+                }
+                if(line.contains("hodinky")){
+                    line = line.replace("hodinky", "Zadny");
+                }
+                if(line.contains("lektvar")){
+                    line = line.replace("lektvar", "Zadny");
+                }
+
+                noveRadky.add(line);
+            }
+
+            Files.write(path, noveRadky, StandardCharsets.UTF_8);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 
