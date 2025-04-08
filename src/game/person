@@ -1,0 +1,8 @@
+0
+1
+2;Berta;varecka;false;false;src/game/dialogues/berrta_dialogue
+3;Mirko;hodinky;false;false;src/game/dialogues/mirko_dialogue
+4;Adam;;true;false;src/game/dialogues/adam_dialogue
+5;Matej;;false;true;src/game/dialogues/matej_dialogue
+6;Nemocny;lektvar;false;true;src/game/dialogues/nemocny_dialogue
+7;Alfonso;;false;true;src/game/dialogues/alfonso_dialog
