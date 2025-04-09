@@ -10,3 +10,4 @@ Dostupné příkazy:
  - mluv  ........ zahájí konverzaci s postavou
  - bojuj  .... zahájí boj s nepřítelem
  - exit ................ ukončí hru
+ - help ................ vypise pomocne menu

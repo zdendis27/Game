@@ -28,6 +28,7 @@ public class Console {
         commands.put("mluv", new StartConversation());
         commands.put("bojuj", new Fight());
         commands.put("exit", new Exit());
+        commands.put("help", new Help());
     }
 
 

@@ -62,7 +62,7 @@ public class Fight extends Command{
                     }
 
                 } else {
-                    int attack = rd.nextInt(5) + 2;
+                    int attack = rd.nextInt(5) + 4;
                     if (defended) {
                         attack /= 2;
                     }

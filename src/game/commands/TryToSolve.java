@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 public class TryToSolve extends Command{
     Scanner sc = new Scanner(System.in);
+    private int password = 0;
 
     /**
      * Tato metoda spusti dialog, ktery je potreba pro uhodnuti hadanky
@@ -69,7 +70,13 @@ public class TryToSolve extends Command{
                     String input = sc.next();
                     if (input.equalsIgnoreCase(answer)) {
                         System.out.println("Spravne");
-                        u.updateReputation();
+                        if(password == 0){
+                            u.updateReputation();
+                            password = 1;
+                        }else {
+                            System.out.println("Uz jsi mi odpovedel");
+                        }
+
                         solved = true;
                     } else {
                         System.out.println("Spatna odpoved, zkus to znovu:");
